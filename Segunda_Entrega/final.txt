@@ -1,0 +1,50 @@
+.MODEL LARGE
+.386
+.STACK 200h
+.DATA
+MAXTEXTSIZE equ 50
+a dd ?
+m dd ?
+z dd ?
+c db MAXTEXTSIZE dup(?), '$'
+d dd ?
+e dd ?
+f dd ?
+g dd ?
+h dd ?
+i dd ?
+numero dd ?
+cadena db MAXTEXTSIZE dup(?), '$'
+resultado dd ?
+b db MAXTEXTSIZE dup(?), '$'
+r dd ?
+_99999.990000 dd 99999.990000
+_99999.000000 dd 99999.000000
+_0.999990 dd 0.999990
+_9999 dd 9999
+_"@sdADaSjfla%dfg" db "@sdADaSjfla%dfg", '$',33 dup(?),
+_"asdlk fh sjf" db "asdlk fh sjf", '$',36 dup(?),
+_30 dd 30
+_"correcto" db "correcto", '$',40 dup(?),
+_7 dd 7
+_4 dd 4
+_9 dd 9
+_8 dd 8
+_89 dd 89
+_0 dd 0
+_3 dd 3
+_5 dd 5
+_12 dd 12
+_10 dd 10
+_1 dd 1
+_2.360000 dd 2.360000
+_6 dd 6
+_18 dd 18
+_19 dd 19
+_20 dd 20
+_21 dd 21
+_22 dd 22
+_23 dd 23
+_24 dd 24
+_25 dd 25
+_102 dd 102

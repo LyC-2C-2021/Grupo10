@@ -1,0 +1,1638 @@
+Terminals unused in grammar
+
+   PYC
+   CONST_BIN
+   CONST_HEXA
+   ENTERO
+   OP_CONCATENACION
+   BASE
+   GUION_B
+
+
+Gramática
+
+    0 $accept: programa $end
+
+    1 $@1: /* vacío */
+
+    2 programa: START $@1 est_declaracion algoritmo
+
+    3 $@2: /* vacío */
+
+    4 programa: START $@2 algoritmo
+
+    5 $@3: /* vacío */
+
+    6 $@4: /* vacío */
+
+    7 $@5: /* vacío */
+
+    8 $@6: /* vacío */
+
+    9 algoritmo: PROGRAM $@3 bloque ENDPROGRAM $@4 $@5 $@6
+
+   10 bloque: sentencia
+   11       | bloque sentencia
+
+   12 sentencia: decision
+   13          | asignacion
+   14          | while
+   15          | for
+   16          | lectura
+   17          | escritura
+
+   18 $@7: /* vacío */
+
+   19 while: WHILE $@7 PARENTESIS_A condicion PARENTESIS_C BEGINWHILE bloque ENDWHILE
+
+   20 decision: IF PARENTESIS_A condicion PARENTESIS_C THEN bloque ENDIF
+
+   21 $@8: /* vacío */
+
+   22 decision: IF PARENTESIS_A condicion PARENTESIS_C THEN bloque $@8 ELSE bloque ENDIF
+
+   23 for: FOR inicioFor TO finFor CORCHETE_A STEP constanteEntera CORCHETE_C NEXT expresion
+
+   24 $@9: /* vacío */
+
+   25 inicioFor: $@9 asignacion
+
+   26 $@10: /* vacío */
+
+   27 finFor: $@10 expresion
+
+   28 constanteEntera: CONST_INT
+
+   29 for: FOR inicioFor TO finFor CORCHETE_A STEP CORCHETE_C NEXT expresion
+
+   30 condicion: expresion_logica
+
+   31 $@11: /* vacío */
+
+   32 condicion: expresion_logica OP_LOG $@11 expresion_logica
+
+   33 expresion_logica: comparacion
+   34                 | OP_NOT comparacion
+
+   35 $@12: /* vacío */
+
+   36 $@13: /* vacío */
+
+   37 comparacion: expresion $@12 OP_COMPARACION $@13 expresion
+
+   38 $@14: /* vacío */
+
+   39 asignacion: ID $@14 OP_ASIG expresion
+
+   40 expresion: termino
+
+   41 $@15: /* vacío */
+
+   42 $@16: /* vacío */
+
+   43 expresion: expresion $@15 op_sumres $@16 termino
+
+   44 $@17: /* vacío */
+
+   45 $@18: /* vacío */
+
+   46 $@19: /* vacío */
+
+   47 longitud: $@17 LONGITUD PARENTESIS_A CORCHETE_A listaID CORCHETE_C PARENTESIS_C $@18 $@19
+
+   48 op_sumres: OP_SUMA
+   49          | OP_RESTA
+
+   50 termino: factor
+
+   51 $@20: /* vacío */
+
+   52 $@21: /* vacío */
+
+   53 termino: termino $@20 op_multdiv $@21 factor
+
+   54 op_multdiv: OP_MULT
+   55           | OP_DIV
+
+   56 lectura: DISPLAY ID
+
+   57 escritura: GET factor
+
+   58 factor: ID
+   59       | CONST_INT
+   60       | CONST_REAL
+   61       | CONST_STR
+   62       | longitud
+
+   63 $@22: /* vacío */
+
+   64 factor: PARENTESIS_A $@22 expresion PARENTESIS_C
+
+   65 est_declaracion: DECLARE declaraciones ENDDECLARE
+
+   66 declaraciones: declaracion
+   67              | declaraciones declaracion
+
+   68 declaracion: DIM CORCHETE_A listaID CORCHETE_C AS CORCHETE_A listaTipo CORCHETE_C
+
+   69 listaTipo: TIPO
+   70          | listaTipo COMA TIPO
+
+   71 listaID: ID
+   72        | listaID COMA ID
+
+
+Terminales con las reglas donde aparecen
+
+$end (0) 0
+error (256)
+PROGRAM (258) 9
+ENDPROGRAM (259) 9
+DIM (260) 68
+AS (261) 68
+ENDDECLARE (262) 65
+DECLARE (263) 65
+START (264) 2 4
+ENDWHILE (265) 19
+BEGINWHILE (266) 19
+WHILE (267) 19
+FOR (268) 23 29
+TO (269) 23 29
+STEP (270) 23 29
+NEXT (271) 23 29
+IF (272) 20 22
+THEN (273) 20 22
+ELSE (274) 22
+ENDIF (275) 20 22
+OP_ASIG (276) 39
+PYC (277)
+CONST_INT (278) 28 59
+CONST_BIN (279)
+CONST_HEXA (280)
+CONST_REAL (281) 60
+CONST_STR (282) 61
+ID (283) 39 56 58 71 72
+ENTERO (284)
+OP_SUMA (285) 48
+OP_RESTA (286) 49
+OP_MULT (287) 54
+OP_DIV (288) 55
+OP_CONCATENACION (289)
+OP_NOT (290) 34
+GET (291) 57
+DISPLAY (292) 56
+OP_LOG (293) 32
+OP_COMPARACION (294) 37
+CORCHETE_A (295) 23 29 47 68
+CORCHETE_C (296) 23 29 47 68
+COMA (297) 70 72
+TIPO (298) 69 70
+PARENTESIS_A (299) 19 20 22 47 64
+PARENTESIS_C (300) 19 20 22 47 64
+BASE (301)
+GUION_B (302)
+LONGITUD (303) 47
+
+
+No terminales con las reglas donde aparecen
+
+$accept (49)
+    en la izquierda: 0
+programa (50)
+    en la izquierda: 2 4, en la derecha: 0
+$@1 (51)
+    en la izquierda: 1, en la derecha: 2
+$@2 (52)
+    en la izquierda: 3, en la derecha: 4
+algoritmo (53)
+    en la izquierda: 9, en la derecha: 2 4
+$@3 (54)
+    en la izquierda: 5, en la derecha: 9
+$@4 (55)
+    en la izquierda: 6, en la derecha: 9
+$@5 (56)
+    en la izquierda: 7, en la derecha: 9
+$@6 (57)
+    en la izquierda: 8, en la derecha: 9
+bloque (58)
+    en la izquierda: 10 11, en la derecha: 9 11 19 20 22
+sentencia (59)
+    en la izquierda: 12 13 14 15 16 17, en la derecha: 10 11
+while (60)
+    en la izquierda: 19, en la derecha: 14
+$@7 (61)
+    en la izquierda: 18, en la derecha: 19
+decision (62)
+    en la izquierda: 20 22, en la derecha: 12
+$@8 (63)
+    en la izquierda: 21, en la derecha: 22
+for (64)
+    en la izquierda: 23 29, en la derecha: 15
+inicioFor (65)
+    en la izquierda: 25, en la derecha: 23 29
+$@9 (66)
+    en la izquierda: 24, en la derecha: 25
+finFor (67)
+    en la izquierda: 27, en la derecha: 23 29
+$@10 (68)
+    en la izquierda: 26, en la derecha: 27
+constanteEntera (69)
+    en la izquierda: 28, en la derecha: 23
+condicion (70)
+    en la izquierda: 30 32, en la derecha: 19 20 22
+$@11 (71)
+    en la izquierda: 31, en la derecha: 32
+expresion_logica (72)
+    en la izquierda: 33 34, en la derecha: 30 32
+comparacion (73)
+    en la izquierda: 37, en la derecha: 33 34
+$@12 (74)
+    en la izquierda: 35, en la derecha: 37
+$@13 (75)
+    en la izquierda: 36, en la derecha: 37
+asignacion (76)
+    en la izquierda: 39, en la derecha: 13 25
+$@14 (77)
+    en la izquierda: 38, en la derecha: 39
+expresion (78)
+    en la izquierda: 40 43, en la derecha: 23 27 29 37 39 43 64
+$@15 (79)
+    en la izquierda: 41, en la derecha: 43
+$@16 (80)
+    en la izquierda: 42, en la derecha: 43
+longitud (81)
+    en la izquierda: 47, en la derecha: 62
+$@17 (82)
+    en la izquierda: 44, en la derecha: 47
+$@18 (83)
+    en la izquierda: 45, en la derecha: 47
+$@19 (84)
+    en la izquierda: 46, en la derecha: 47
+op_sumres (85)
+    en la izquierda: 48 49, en la derecha: 43
+termino (86)
+    en la izquierda: 50 53, en la derecha: 40 43 53
+$@20 (87)
+    en la izquierda: 51, en la derecha: 53
+$@21 (88)
+    en la izquierda: 52, en la derecha: 53
+op_multdiv (89)
+    en la izquierda: 54 55, en la derecha: 53
+lectura (90)
+    en la izquierda: 56, en la derecha: 16
+escritura (91)
+    en la izquierda: 57, en la derecha: 17
+factor (92)
+    en la izquierda: 58 59 60 61 62 64, en la derecha: 50 53 57
+$@22 (93)
+    en la izquierda: 63, en la derecha: 64
+est_declaracion (94)
+    en la izquierda: 65, en la derecha: 2
+declaraciones (95)
+    en la izquierda: 66 67, en la derecha: 65 67
+declaracion (96)
+    en la izquierda: 68, en la derecha: 66 67
+listaTipo (97)
+    en la izquierda: 69 70, en la derecha: 68 70
+listaID (98)
+    en la izquierda: 71 72, en la derecha: 47 68 72
+
+
+estado 0
+
+    0 $accept: . programa $end
+
+    START  desplazar e ir al estado 1
+
+    programa  ir al estado 2
+
+
+estado 1
+
+    2 programa: START . $@1 est_declaracion algoritmo
+    4         | START . $@2 algoritmo
+
+    PROGRAM   reduce usando la regla 3 ($@2)
+    $default  reduce usando la regla 1 ($@1)
+
+    $@1  ir al estado 3
+    $@2  ir al estado 4
+
+
+estado 2
+
+    0 $accept: programa . $end
+
+    $end  desplazar e ir al estado 5
+
+
+estado 3
+
+    2 programa: START $@1 . est_declaracion algoritmo
+
+    DECLARE  desplazar e ir al estado 6
+
+    est_declaracion  ir al estado 7
+
+
+estado 4
+
+    4 programa: START $@2 . algoritmo
+
+    PROGRAM  desplazar e ir al estado 8
+
+    algoritmo  ir al estado 9
+
+
+estado 5
+
+    0 $accept: programa $end .
+
+    $default  aceptar
+
+
+estado 6
+
+   65 est_declaracion: DECLARE . declaraciones ENDDECLARE
+
+    DIM  desplazar e ir al estado 10
+
+    declaraciones  ir al estado 11
+    declaracion    ir al estado 12
+
+
+estado 7
+
+    2 programa: START $@1 est_declaracion . algoritmo
+
+    PROGRAM  desplazar e ir al estado 8
+
+    algoritmo  ir al estado 13
+
+
+estado 8
+
+    9 algoritmo: PROGRAM . $@3 bloque ENDPROGRAM $@4 $@5 $@6
+
+    $default  reduce usando la regla 5 ($@3)
+
+    $@3  ir al estado 14
+
+
+estado 9
+
+    4 programa: START $@2 algoritmo .
+
+    $default  reduce usando la regla 4 (programa)
+
+
+estado 10
+
+   68 declaracion: DIM . CORCHETE_A listaID CORCHETE_C AS CORCHETE_A listaTipo CORCHETE_C
+
+    CORCHETE_A  desplazar e ir al estado 15
+
+
+estado 11
+
+   65 est_declaracion: DECLARE declaraciones . ENDDECLARE
+   67 declaraciones: declaraciones . declaracion
+
+    DIM         desplazar e ir al estado 10
+    ENDDECLARE  desplazar e ir al estado 16
+
+    declaracion  ir al estado 17
+
+
+estado 12
+
+   66 declaraciones: declaracion .
+
+    $default  reduce usando la regla 66 (declaraciones)
+
+
+estado 13
+
+    2 programa: START $@1 est_declaracion algoritmo .
+
+    $default  reduce usando la regla 2 (programa)
+
+
+estado 14
+
+    9 algoritmo: PROGRAM $@3 . bloque ENDPROGRAM $@4 $@5 $@6
+
+    WHILE    desplazar e ir al estado 18
+    FOR      desplazar e ir al estado 19
+    IF       desplazar e ir al estado 20
+    ID       desplazar e ir al estado 21
+    GET      desplazar e ir al estado 22
+    DISPLAY  desplazar e ir al estado 23
+
+    bloque      ir al estado 24
+    sentencia   ir al estado 25
+    while       ir al estado 26
+    decision    ir al estado 27
+    for         ir al estado 28
+    asignacion  ir al estado 29
+    lectura     ir al estado 30
+    escritura   ir al estado 31
+
+
+estado 15
+
+   68 declaracion: DIM CORCHETE_A . listaID CORCHETE_C AS CORCHETE_A listaTipo CORCHETE_C
+
+    ID  desplazar e ir al estado 32
+
+    listaID  ir al estado 33
+
+
+estado 16
+
+   65 est_declaracion: DECLARE declaraciones ENDDECLARE .
+
+    $default  reduce usando la regla 65 (est_declaracion)
+
+
+estado 17
+
+   67 declaraciones: declaraciones declaracion .
+
+    $default  reduce usando la regla 67 (declaraciones)
+
+
+estado 18
+
+   19 while: WHILE . $@7 PARENTESIS_A condicion PARENTESIS_C BEGINWHILE bloque ENDWHILE
+
+    $default  reduce usando la regla 18 ($@7)
+
+    $@7  ir al estado 34
+
+
+estado 19
+
+   23 for: FOR . inicioFor TO finFor CORCHETE_A STEP constanteEntera CORCHETE_C NEXT expresion
+   29    | FOR . inicioFor TO finFor CORCHETE_A STEP CORCHETE_C NEXT expresion
+
+    $default  reduce usando la regla 24 ($@9)
+
+    inicioFor  ir al estado 35
+    $@9        ir al estado 36
+
+
+estado 20
+
+   20 decision: IF . PARENTESIS_A condicion PARENTESIS_C THEN bloque ENDIF
+   22         | IF . PARENTESIS_A condicion PARENTESIS_C THEN bloque $@8 ELSE bloque ENDIF
+
+    PARENTESIS_A  desplazar e ir al estado 37
+
+
+estado 21
+
+   39 asignacion: ID . $@14 OP_ASIG expresion
+
+    $default  reduce usando la regla 38 ($@14)
+
+    $@14  ir al estado 38
+
+
+estado 22
+
+   57 escritura: GET . factor
+
+    CONST_INT     desplazar e ir al estado 39
+    CONST_REAL    desplazar e ir al estado 40
+    CONST_STR     desplazar e ir al estado 41
+    ID            desplazar e ir al estado 42
+    PARENTESIS_A  desplazar e ir al estado 43
+
+    $default  reduce usando la regla 44 ($@17)
+
+    longitud  ir al estado 44
+    $@17      ir al estado 45
+    factor    ir al estado 46
+
+
+estado 23
+
+   56 lectura: DISPLAY . ID
+
+    ID  desplazar e ir al estado 47
+
+
+estado 24
+
+    9 algoritmo: PROGRAM $@3 bloque . ENDPROGRAM $@4 $@5 $@6
+   11 bloque: bloque . sentencia
+
+    ENDPROGRAM  desplazar e ir al estado 48
+    WHILE       desplazar e ir al estado 18
+    FOR         desplazar e ir al estado 19
+    IF          desplazar e ir al estado 20
+    ID          desplazar e ir al estado 21
+    GET         desplazar e ir al estado 22
+    DISPLAY     desplazar e ir al estado 23
+
+    sentencia   ir al estado 49
+    while       ir al estado 26
+    decision    ir al estado 27
+    for         ir al estado 28
+    asignacion  ir al estado 29
+    lectura     ir al estado 30
+    escritura   ir al estado 31
+
+
+estado 25
+
+   10 bloque: sentencia .
+
+    $default  reduce usando la regla 10 (bloque)
+
+
+estado 26
+
+   14 sentencia: while .
+
+    $default  reduce usando la regla 14 (sentencia)
+
+
+estado 27
+
+   12 sentencia: decision .
+
+    $default  reduce usando la regla 12 (sentencia)
+
+
+estado 28
+
+   15 sentencia: for .
+
+    $default  reduce usando la regla 15 (sentencia)
+
+
+estado 29
+
+   13 sentencia: asignacion .
+
+    $default  reduce usando la regla 13 (sentencia)
+
+
+estado 30
+
+   16 sentencia: lectura .
+
+    $default  reduce usando la regla 16 (sentencia)
+
+
+estado 31
+
+   17 sentencia: escritura .
+
+    $default  reduce usando la regla 17 (sentencia)
+
+
+estado 32
+
+   71 listaID: ID .
+
+    $default  reduce usando la regla 71 (listaID)
+
+
+estado 33
+
+   68 declaracion: DIM CORCHETE_A listaID . CORCHETE_C AS CORCHETE_A listaTipo CORCHETE_C
+   72 listaID: listaID . COMA ID
+
+    CORCHETE_C  desplazar e ir al estado 50
+    COMA        desplazar e ir al estado 51
+
+
+estado 34
+
+   19 while: WHILE $@7 . PARENTESIS_A condicion PARENTESIS_C BEGINWHILE bloque ENDWHILE
+
+    PARENTESIS_A  desplazar e ir al estado 52
+
+
+estado 35
+
+   23 for: FOR inicioFor . TO finFor CORCHETE_A STEP constanteEntera CORCHETE_C NEXT expresion
+   29    | FOR inicioFor . TO finFor CORCHETE_A STEP CORCHETE_C NEXT expresion
+
+    TO  desplazar e ir al estado 53
+
+
+estado 36
+
+   25 inicioFor: $@9 . asignacion
+
+    ID  desplazar e ir al estado 21
+
+    asignacion  ir al estado 54
+
+
+estado 37
+
+   20 decision: IF PARENTESIS_A . condicion PARENTESIS_C THEN bloque ENDIF
+   22         | IF PARENTESIS_A . condicion PARENTESIS_C THEN bloque $@8 ELSE bloque ENDIF
+
+    CONST_INT     desplazar e ir al estado 39
+    CONST_REAL    desplazar e ir al estado 40
+    CONST_STR     desplazar e ir al estado 41
+    ID            desplazar e ir al estado 42
+    OP_NOT        desplazar e ir al estado 55
+    PARENTESIS_A  desplazar e ir al estado 43
+
+    $default  reduce usando la regla 44 ($@17)
+
+    condicion         ir al estado 56
+    expresion_logica  ir al estado 57
+    comparacion       ir al estado 58
+    expresion         ir al estado 59
+    longitud          ir al estado 44
+    $@17              ir al estado 45
+    termino           ir al estado 60
+    factor            ir al estado 61
+
+
+estado 38
+
+   39 asignacion: ID $@14 . OP_ASIG expresion
+
+    OP_ASIG  desplazar e ir al estado 62
+
+
+estado 39
+
+   59 factor: CONST_INT .
+
+    $default  reduce usando la regla 59 (factor)
+
+
+estado 40
+
+   60 factor: CONST_REAL .
+
+    $default  reduce usando la regla 60 (factor)
+
+
+estado 41
+
+   61 factor: CONST_STR .
+
+    $default  reduce usando la regla 61 (factor)
+
+
+estado 42
+
+   58 factor: ID .
+
+    $default  reduce usando la regla 58 (factor)
+
+
+estado 43
+
+   64 factor: PARENTESIS_A . $@22 expresion PARENTESIS_C
+
+    $default  reduce usando la regla 63 ($@22)
+
+    $@22  ir al estado 63
+
+
+estado 44
+
+   62 factor: longitud .
+
+    $default  reduce usando la regla 62 (factor)
+
+
+estado 45
+
+   47 longitud: $@17 . LONGITUD PARENTESIS_A CORCHETE_A listaID CORCHETE_C PARENTESIS_C $@18 $@19
+
+    LONGITUD  desplazar e ir al estado 64
+
+
+estado 46
+
+   57 escritura: GET factor .
+
+    $default  reduce usando la regla 57 (escritura)
+
+
+estado 47
+
+   56 lectura: DISPLAY ID .
+
+    $default  reduce usando la regla 56 (lectura)
+
+
+estado 48
+
+    9 algoritmo: PROGRAM $@3 bloque ENDPROGRAM . $@4 $@5 $@6
+
+    $default  reduce usando la regla 6 ($@4)
+
+    $@4  ir al estado 65
+
+
+estado 49
+
+   11 bloque: bloque sentencia .
+
+    $default  reduce usando la regla 11 (bloque)
+
+
+estado 50
+
+   68 declaracion: DIM CORCHETE_A listaID CORCHETE_C . AS CORCHETE_A listaTipo CORCHETE_C
+
+    AS  desplazar e ir al estado 66
+
+
+estado 51
+
+   72 listaID: listaID COMA . ID
+
+    ID  desplazar e ir al estado 67
+
+
+estado 52
+
+   19 while: WHILE $@7 PARENTESIS_A . condicion PARENTESIS_C BEGINWHILE bloque ENDWHILE
+
+    CONST_INT     desplazar e ir al estado 39
+    CONST_REAL    desplazar e ir al estado 40
+    CONST_STR     desplazar e ir al estado 41
+    ID            desplazar e ir al estado 42
+    OP_NOT        desplazar e ir al estado 55
+    PARENTESIS_A  desplazar e ir al estado 43
+
+    $default  reduce usando la regla 44 ($@17)
+
+    condicion         ir al estado 68
+    expresion_logica  ir al estado 57
+    comparacion       ir al estado 58
+    expresion         ir al estado 59
+    longitud          ir al estado 44
+    $@17              ir al estado 45
+    termino           ir al estado 60
+    factor            ir al estado 61
+
+
+estado 53
+
+   23 for: FOR inicioFor TO . finFor CORCHETE_A STEP constanteEntera CORCHETE_C NEXT expresion
+   29    | FOR inicioFor TO . finFor CORCHETE_A STEP CORCHETE_C NEXT expresion
+
+    $default  reduce usando la regla 26 ($@10)
+
+    finFor  ir al estado 69
+    $@10    ir al estado 70
+
+
+estado 54
+
+   25 inicioFor: $@9 asignacion .
+
+    $default  reduce usando la regla 25 (inicioFor)
+
+
+estado 55
+
+   34 expresion_logica: OP_NOT . comparacion
+
+    CONST_INT     desplazar e ir al estado 39
+    CONST_REAL    desplazar e ir al estado 40
+    CONST_STR     desplazar e ir al estado 41
+    ID            desplazar e ir al estado 42
+    PARENTESIS_A  desplazar e ir al estado 43
+
+    $default  reduce usando la regla 44 ($@17)
+
+    comparacion  ir al estado 71
+    expresion    ir al estado 59
+    longitud     ir al estado 44
+    $@17         ir al estado 45
+    termino      ir al estado 60
+    factor       ir al estado 61
+
+
+estado 56
+
+   20 decision: IF PARENTESIS_A condicion . PARENTESIS_C THEN bloque ENDIF
+   22         | IF PARENTESIS_A condicion . PARENTESIS_C THEN bloque $@8 ELSE bloque ENDIF
+
+    PARENTESIS_C  desplazar e ir al estado 72
+
+
+estado 57
+
+   30 condicion: expresion_logica .
+   32          | expresion_logica . OP_LOG $@11 expresion_logica
+
+    OP_LOG  desplazar e ir al estado 73
+
+    $default  reduce usando la regla 30 (condicion)
+
+
+estado 58
+
+   33 expresion_logica: comparacion .
+
+    $default  reduce usando la regla 33 (expresion_logica)
+
+
+estado 59
+
+   37 comparacion: expresion . $@12 OP_COMPARACION $@13 expresion
+   43 expresion: expresion . $@15 op_sumres $@16 termino
+
+    OP_COMPARACION  reduce usando la regla 35 ($@12)
+    $default        reduce usando la regla 41 ($@15)
+
+    $@12  ir al estado 74
+    $@15  ir al estado 75
+
+
+estado 60
+
+   40 expresion: termino .
+   53 termino: termino . $@20 op_multdiv $@21 factor
+
+    OP_MULT   reduce usando la regla 51 ($@20)
+    OP_DIV    reduce usando la regla 51 ($@20)
+    $default  reduce usando la regla 40 (expresion)
+
+    $@20  ir al estado 76
+
+
+estado 61
+
+   50 termino: factor .
+
+    $default  reduce usando la regla 50 (termino)
+
+
+estado 62
+
+   39 asignacion: ID $@14 OP_ASIG . expresion
+
+    CONST_INT     desplazar e ir al estado 39
+    CONST_REAL    desplazar e ir al estado 40
+    CONST_STR     desplazar e ir al estado 41
+    ID            desplazar e ir al estado 42
+    PARENTESIS_A  desplazar e ir al estado 43
+
+    $default  reduce usando la regla 44 ($@17)
+
+    expresion  ir al estado 77
+    longitud   ir al estado 44
+    $@17       ir al estado 45
+    termino    ir al estado 60
+    factor     ir al estado 61
+
+
+estado 63
+
+   64 factor: PARENTESIS_A $@22 . expresion PARENTESIS_C
+
+    CONST_INT     desplazar e ir al estado 39
+    CONST_REAL    desplazar e ir al estado 40
+    CONST_STR     desplazar e ir al estado 41
+    ID            desplazar e ir al estado 42
+    PARENTESIS_A  desplazar e ir al estado 43
+
+    $default  reduce usando la regla 44 ($@17)
+
+    expresion  ir al estado 78
+    longitud   ir al estado 44
+    $@17       ir al estado 45
+    termino    ir al estado 60
+    factor     ir al estado 61
+
+
+estado 64
+
+   47 longitud: $@17 LONGITUD . PARENTESIS_A CORCHETE_A listaID CORCHETE_C PARENTESIS_C $@18 $@19
+
+    PARENTESIS_A  desplazar e ir al estado 79
+
+
+estado 65
+
+    9 algoritmo: PROGRAM $@3 bloque ENDPROGRAM $@4 . $@5 $@6
+
+    $default  reduce usando la regla 7 ($@5)
+
+    $@5  ir al estado 80
+
+
+estado 66
+
+   68 declaracion: DIM CORCHETE_A listaID CORCHETE_C AS . CORCHETE_A listaTipo CORCHETE_C
+
+    CORCHETE_A  desplazar e ir al estado 81
+
+
+estado 67
+
+   72 listaID: listaID COMA ID .
+
+    $default  reduce usando la regla 72 (listaID)
+
+
+estado 68
+
+   19 while: WHILE $@7 PARENTESIS_A condicion . PARENTESIS_C BEGINWHILE bloque ENDWHILE
+
+    PARENTESIS_C  desplazar e ir al estado 82
+
+
+estado 69
+
+   23 for: FOR inicioFor TO finFor . CORCHETE_A STEP constanteEntera CORCHETE_C NEXT expresion
+   29    | FOR inicioFor TO finFor . CORCHETE_A STEP CORCHETE_C NEXT expresion
+
+    CORCHETE_A  desplazar e ir al estado 83
+
+
+estado 70
+
+   27 finFor: $@10 . expresion
+
+    CONST_INT     desplazar e ir al estado 39
+    CONST_REAL    desplazar e ir al estado 40
+    CONST_STR     desplazar e ir al estado 41
+    ID            desplazar e ir al estado 42
+    PARENTESIS_A  desplazar e ir al estado 43
+
+    $default  reduce usando la regla 44 ($@17)
+
+    expresion  ir al estado 84
+    longitud   ir al estado 44
+    $@17       ir al estado 45
+    termino    ir al estado 60
+    factor     ir al estado 61
+
+
+estado 71
+
+   34 expresion_logica: OP_NOT comparacion .
+
+    $default  reduce usando la regla 34 (expresion_logica)
+
+
+estado 72
+
+   20 decision: IF PARENTESIS_A condicion PARENTESIS_C . THEN bloque ENDIF
+   22         | IF PARENTESIS_A condicion PARENTESIS_C . THEN bloque $@8 ELSE bloque ENDIF
+
+    THEN  desplazar e ir al estado 85
+
+
+estado 73
+
+   32 condicion: expresion_logica OP_LOG . $@11 expresion_logica
+
+    $default  reduce usando la regla 31 ($@11)
+
+    $@11  ir al estado 86
+
+
+estado 74
+
+   37 comparacion: expresion $@12 . OP_COMPARACION $@13 expresion
+
+    OP_COMPARACION  desplazar e ir al estado 87
+
+
+estado 75
+
+   43 expresion: expresion $@15 . op_sumres $@16 termino
+
+    OP_SUMA   desplazar e ir al estado 88
+    OP_RESTA  desplazar e ir al estado 89
+
+    op_sumres  ir al estado 90
+
+
+estado 76
+
+   53 termino: termino $@20 . op_multdiv $@21 factor
+
+    OP_MULT  desplazar e ir al estado 91
+    OP_DIV   desplazar e ir al estado 92
+
+    op_multdiv  ir al estado 93
+
+
+estado 77
+
+   39 asignacion: ID $@14 OP_ASIG expresion .
+   43 expresion: expresion . $@15 op_sumres $@16 termino
+
+    OP_SUMA   reduce usando la regla 41 ($@15)
+    OP_RESTA  reduce usando la regla 41 ($@15)
+    $default  reduce usando la regla 39 (asignacion)
+
+    $@15  ir al estado 75
+
+
+estado 78
+
+   43 expresion: expresion . $@15 op_sumres $@16 termino
+   64 factor: PARENTESIS_A $@22 expresion . PARENTESIS_C
+
+    PARENTESIS_C  desplazar e ir al estado 94
+
+    $default  reduce usando la regla 41 ($@15)
+
+    $@15  ir al estado 75
+
+
+estado 79
+
+   47 longitud: $@17 LONGITUD PARENTESIS_A . CORCHETE_A listaID CORCHETE_C PARENTESIS_C $@18 $@19
+
+    CORCHETE_A  desplazar e ir al estado 95
+
+
+estado 80
+
+    9 algoritmo: PROGRAM $@3 bloque ENDPROGRAM $@4 $@5 . $@6
+
+    $default  reduce usando la regla 8 ($@6)
+
+    $@6  ir al estado 96
+
+
+estado 81
+
+   68 declaracion: DIM CORCHETE_A listaID CORCHETE_C AS CORCHETE_A . listaTipo CORCHETE_C
+
+    TIPO  desplazar e ir al estado 97
+
+    listaTipo  ir al estado 98
+
+
+estado 82
+
+   19 while: WHILE $@7 PARENTESIS_A condicion PARENTESIS_C . BEGINWHILE bloque ENDWHILE
+
+    BEGINWHILE  desplazar e ir al estado 99
+
+
+estado 83
+
+   23 for: FOR inicioFor TO finFor CORCHETE_A . STEP constanteEntera CORCHETE_C NEXT expresion
+   29    | FOR inicioFor TO finFor CORCHETE_A . STEP CORCHETE_C NEXT expresion
+
+    STEP  desplazar e ir al estado 100
+
+
+estado 84
+
+   27 finFor: $@10 expresion .
+   43 expresion: expresion . $@15 op_sumres $@16 termino
+
+    CORCHETE_A  reduce usando la regla 27 (finFor)
+    $default    reduce usando la regla 41 ($@15)
+
+    $@15  ir al estado 75
+
+
+estado 85
+
+   20 decision: IF PARENTESIS_A condicion PARENTESIS_C THEN . bloque ENDIF
+   22         | IF PARENTESIS_A condicion PARENTESIS_C THEN . bloque $@8 ELSE bloque ENDIF
+
+    WHILE    desplazar e ir al estado 18
+    FOR      desplazar e ir al estado 19
+    IF       desplazar e ir al estado 20
+    ID       desplazar e ir al estado 21
+    GET      desplazar e ir al estado 22
+    DISPLAY  desplazar e ir al estado 23
+
+    bloque      ir al estado 101
+    sentencia   ir al estado 25
+    while       ir al estado 26
+    decision    ir al estado 27
+    for         ir al estado 28
+    asignacion  ir al estado 29
+    lectura     ir al estado 30
+    escritura   ir al estado 31
+
+
+estado 86
+
+   32 condicion: expresion_logica OP_LOG $@11 . expresion_logica
+
+    CONST_INT     desplazar e ir al estado 39
+    CONST_REAL    desplazar e ir al estado 40
+    CONST_STR     desplazar e ir al estado 41
+    ID            desplazar e ir al estado 42
+    OP_NOT        desplazar e ir al estado 55
+    PARENTESIS_A  desplazar e ir al estado 43
+
+    $default  reduce usando la regla 44 ($@17)
+
+    expresion_logica  ir al estado 102
+    comparacion       ir al estado 58
+    expresion         ir al estado 59
+    longitud          ir al estado 44
+    $@17              ir al estado 45
+    termino           ir al estado 60
+    factor            ir al estado 61
+
+
+estado 87
+
+   37 comparacion: expresion $@12 OP_COMPARACION . $@13 expresion
+
+    $default  reduce usando la regla 36 ($@13)
+
+    $@13  ir al estado 103
+
+
+estado 88
+
+   48 op_sumres: OP_SUMA .
+
+    $default  reduce usando la regla 48 (op_sumres)
+
+
+estado 89
+
+   49 op_sumres: OP_RESTA .
+
+    $default  reduce usando la regla 49 (op_sumres)
+
+
+estado 90
+
+   43 expresion: expresion $@15 op_sumres . $@16 termino
+
+    $default  reduce usando la regla 42 ($@16)
+
+    $@16  ir al estado 104
+
+
+estado 91
+
+   54 op_multdiv: OP_MULT .
+
+    $default  reduce usando la regla 54 (op_multdiv)
+
+
+estado 92
+
+   55 op_multdiv: OP_DIV .
+
+    $default  reduce usando la regla 55 (op_multdiv)
+
+
+estado 93
+
+   53 termino: termino $@20 op_multdiv . $@21 factor
+
+    $default  reduce usando la regla 52 ($@21)
+
+    $@21  ir al estado 105
+
+
+estado 94
+
+   64 factor: PARENTESIS_A $@22 expresion PARENTESIS_C .
+
+    $default  reduce usando la regla 64 (factor)
+
+
+estado 95
+
+   47 longitud: $@17 LONGITUD PARENTESIS_A CORCHETE_A . listaID CORCHETE_C PARENTESIS_C $@18 $@19
+
+    ID  desplazar e ir al estado 32
+
+    listaID  ir al estado 106
+
+
+estado 96
+
+    9 algoritmo: PROGRAM $@3 bloque ENDPROGRAM $@4 $@5 $@6 .
+
+    $default  reduce usando la regla 9 (algoritmo)
+
+
+estado 97
+
+   69 listaTipo: TIPO .
+
+    $default  reduce usando la regla 69 (listaTipo)
+
+
+estado 98
+
+   68 declaracion: DIM CORCHETE_A listaID CORCHETE_C AS CORCHETE_A listaTipo . CORCHETE_C
+   70 listaTipo: listaTipo . COMA TIPO
+
+    CORCHETE_C  desplazar e ir al estado 107
+    COMA        desplazar e ir al estado 108
+
+
+estado 99
+
+   19 while: WHILE $@7 PARENTESIS_A condicion PARENTESIS_C BEGINWHILE . bloque ENDWHILE
+
+    WHILE    desplazar e ir al estado 18
+    FOR      desplazar e ir al estado 19
+    IF       desplazar e ir al estado 20
+    ID       desplazar e ir al estado 21
+    GET      desplazar e ir al estado 22
+    DISPLAY  desplazar e ir al estado 23
+
+    bloque      ir al estado 109
+    sentencia   ir al estado 25
+    while       ir al estado 26
+    decision    ir al estado 27
+    for         ir al estado 28
+    asignacion  ir al estado 29
+    lectura     ir al estado 30
+    escritura   ir al estado 31
+
+
+estado 100
+
+   23 for: FOR inicioFor TO finFor CORCHETE_A STEP . constanteEntera CORCHETE_C NEXT expresion
+   29    | FOR inicioFor TO finFor CORCHETE_A STEP . CORCHETE_C NEXT expresion
+
+    CONST_INT   desplazar e ir al estado 110
+    CORCHETE_C  desplazar e ir al estado 111
+
+    constanteEntera  ir al estado 112
+
+
+estado 101
+
+   11 bloque: bloque . sentencia
+   20 decision: IF PARENTESIS_A condicion PARENTESIS_C THEN bloque . ENDIF
+   22         | IF PARENTESIS_A condicion PARENTESIS_C THEN bloque . $@8 ELSE bloque ENDIF
+
+    WHILE    desplazar e ir al estado 18
+    FOR      desplazar e ir al estado 19
+    IF       desplazar e ir al estado 20
+    ENDIF    desplazar e ir al estado 113
+    ID       desplazar e ir al estado 21
+    GET      desplazar e ir al estado 22
+    DISPLAY  desplazar e ir al estado 23
+
+    $default  reduce usando la regla 21 ($@8)
+
+    sentencia   ir al estado 49
+    while       ir al estado 26
+    decision    ir al estado 27
+    $@8         ir al estado 114
+    for         ir al estado 28
+    asignacion  ir al estado 29
+    lectura     ir al estado 30
+    escritura   ir al estado 31
+
+
+estado 102
+
+   32 condicion: expresion_logica OP_LOG $@11 expresion_logica .
+
+    $default  reduce usando la regla 32 (condicion)
+
+
+estado 103
+
+   37 comparacion: expresion $@12 OP_COMPARACION $@13 . expresion
+
+    CONST_INT     desplazar e ir al estado 39
+    CONST_REAL    desplazar e ir al estado 40
+    CONST_STR     desplazar e ir al estado 41
+    ID            desplazar e ir al estado 42
+    PARENTESIS_A  desplazar e ir al estado 43
+
+    $default  reduce usando la regla 44 ($@17)
+
+    expresion  ir al estado 115
+    longitud   ir al estado 44
+    $@17       ir al estado 45
+    termino    ir al estado 60
+    factor     ir al estado 61
+
+
+estado 104
+
+   43 expresion: expresion $@15 op_sumres $@16 . termino
+
+    CONST_INT     desplazar e ir al estado 39
+    CONST_REAL    desplazar e ir al estado 40
+    CONST_STR     desplazar e ir al estado 41
+    ID            desplazar e ir al estado 42
+    PARENTESIS_A  desplazar e ir al estado 43
+
+    $default  reduce usando la regla 44 ($@17)
+
+    longitud  ir al estado 44
+    $@17      ir al estado 45
+    termino   ir al estado 116
+    factor    ir al estado 61
+
+
+estado 105
+
+   53 termino: termino $@20 op_multdiv $@21 . factor
+
+    CONST_INT     desplazar e ir al estado 39
+    CONST_REAL    desplazar e ir al estado 40
+    CONST_STR     desplazar e ir al estado 41
+    ID            desplazar e ir al estado 42
+    PARENTESIS_A  desplazar e ir al estado 43
+
+    $default  reduce usando la regla 44 ($@17)
+
+    longitud  ir al estado 44
+    $@17      ir al estado 45
+    factor    ir al estado 117
+
+
+estado 106
+
+   47 longitud: $@17 LONGITUD PARENTESIS_A CORCHETE_A listaID . CORCHETE_C PARENTESIS_C $@18 $@19
+   72 listaID: listaID . COMA ID
+
+    CORCHETE_C  desplazar e ir al estado 118
+    COMA        desplazar e ir al estado 51
+
+
+estado 107
+
+   68 declaracion: DIM CORCHETE_A listaID CORCHETE_C AS CORCHETE_A listaTipo CORCHETE_C .
+
+    $default  reduce usando la regla 68 (declaracion)
+
+
+estado 108
+
+   70 listaTipo: listaTipo COMA . TIPO
+
+    TIPO  desplazar e ir al estado 119
+
+
+estado 109
+
+   11 bloque: bloque . sentencia
+   19 while: WHILE $@7 PARENTESIS_A condicion PARENTESIS_C BEGINWHILE bloque . ENDWHILE
+
+    ENDWHILE  desplazar e ir al estado 120
+    WHILE     desplazar e ir al estado 18
+    FOR       desplazar e ir al estado 19
+    IF        desplazar e ir al estado 20
+    ID        desplazar e ir al estado 21
+    GET       desplazar e ir al estado 22
+    DISPLAY   desplazar e ir al estado 23
+
+    sentencia   ir al estado 49
+    while       ir al estado 26
+    decision    ir al estado 27
+    for         ir al estado 28
+    asignacion  ir al estado 29
+    lectura     ir al estado 30
+    escritura   ir al estado 31
+
+
+estado 110
+
+   28 constanteEntera: CONST_INT .
+
+    $default  reduce usando la regla 28 (constanteEntera)
+
+
+estado 111
+
+   29 for: FOR inicioFor TO finFor CORCHETE_A STEP CORCHETE_C . NEXT expresion
+
+    NEXT  desplazar e ir al estado 121
+
+
+estado 112
+
+   23 for: FOR inicioFor TO finFor CORCHETE_A STEP constanteEntera . CORCHETE_C NEXT expresion
+
+    CORCHETE_C  desplazar e ir al estado 122
+
+
+estado 113
+
+   20 decision: IF PARENTESIS_A condicion PARENTESIS_C THEN bloque ENDIF .
+
+    $default  reduce usando la regla 20 (decision)
+
+
+estado 114
+
+   22 decision: IF PARENTESIS_A condicion PARENTESIS_C THEN bloque $@8 . ELSE bloque ENDIF
+
+    ELSE  desplazar e ir al estado 123
+
+
+estado 115
+
+   37 comparacion: expresion $@12 OP_COMPARACION $@13 expresion .
+   43 expresion: expresion . $@15 op_sumres $@16 termino
+
+    OP_SUMA   reduce usando la regla 41 ($@15)
+    OP_RESTA  reduce usando la regla 41 ($@15)
+    $default  reduce usando la regla 37 (comparacion)
+
+    $@15  ir al estado 75
+
+
+estado 116
+
+   43 expresion: expresion $@15 op_sumres $@16 termino .
+   53 termino: termino . $@20 op_multdiv $@21 factor
+
+    OP_MULT   reduce usando la regla 51 ($@20)
+    OP_DIV    reduce usando la regla 51 ($@20)
+    $default  reduce usando la regla 43 (expresion)
+
+    $@20  ir al estado 76
+
+
+estado 117
+
+   53 termino: termino $@20 op_multdiv $@21 factor .
+
+    $default  reduce usando la regla 53 (termino)
+
+
+estado 118
+
+   47 longitud: $@17 LONGITUD PARENTESIS_A CORCHETE_A listaID CORCHETE_C . PARENTESIS_C $@18 $@19
+
+    PARENTESIS_C  desplazar e ir al estado 124
+
+
+estado 119
+
+   70 listaTipo: listaTipo COMA TIPO .
+
+    $default  reduce usando la regla 70 (listaTipo)
+
+
+estado 120
+
+   19 while: WHILE $@7 PARENTESIS_A condicion PARENTESIS_C BEGINWHILE bloque ENDWHILE .
+
+    $default  reduce usando la regla 19 (while)
+
+
+estado 121
+
+   29 for: FOR inicioFor TO finFor CORCHETE_A STEP CORCHETE_C NEXT . expresion
+
+    CONST_INT     desplazar e ir al estado 39
+    CONST_REAL    desplazar e ir al estado 40
+    CONST_STR     desplazar e ir al estado 41
+    ID            desplazar e ir al estado 42
+    PARENTESIS_A  desplazar e ir al estado 43
+
+    $default  reduce usando la regla 44 ($@17)
+
+    expresion  ir al estado 125
+    longitud   ir al estado 44
+    $@17       ir al estado 45
+    termino    ir al estado 60
+    factor     ir al estado 61
+
+
+estado 122
+
+   23 for: FOR inicioFor TO finFor CORCHETE_A STEP constanteEntera CORCHETE_C . NEXT expresion
+
+    NEXT  desplazar e ir al estado 126
+
+
+estado 123
+
+   22 decision: IF PARENTESIS_A condicion PARENTESIS_C THEN bloque $@8 ELSE . bloque ENDIF
+
+    WHILE    desplazar e ir al estado 18
+    FOR      desplazar e ir al estado 19
+    IF       desplazar e ir al estado 20
+    ID       desplazar e ir al estado 21
+    GET      desplazar e ir al estado 22
+    DISPLAY  desplazar e ir al estado 23
+
+    bloque      ir al estado 127
+    sentencia   ir al estado 25
+    while       ir al estado 26
+    decision    ir al estado 27
+    for         ir al estado 28
+    asignacion  ir al estado 29
+    lectura     ir al estado 30
+    escritura   ir al estado 31
+
+
+estado 124
+
+   47 longitud: $@17 LONGITUD PARENTESIS_A CORCHETE_A listaID CORCHETE_C PARENTESIS_C . $@18 $@19
+
+    $default  reduce usando la regla 45 ($@18)
+
+    $@18  ir al estado 128
+
+
+estado 125
+
+   29 for: FOR inicioFor TO finFor CORCHETE_A STEP CORCHETE_C NEXT expresion .
+   43 expresion: expresion . $@15 op_sumres $@16 termino
+
+    OP_SUMA   reduce usando la regla 41 ($@15)
+    OP_RESTA  reduce usando la regla 41 ($@15)
+    $default  reduce usando la regla 29 (for)
+
+    $@15  ir al estado 75
+
+
+estado 126
+
+   23 for: FOR inicioFor TO finFor CORCHETE_A STEP constanteEntera CORCHETE_C NEXT . expresion
+
+    CONST_INT     desplazar e ir al estado 39
+    CONST_REAL    desplazar e ir al estado 40
+    CONST_STR     desplazar e ir al estado 41
+    ID            desplazar e ir al estado 42
+    PARENTESIS_A  desplazar e ir al estado 43
+
+    $default  reduce usando la regla 44 ($@17)
+
+    expresion  ir al estado 129
+    longitud   ir al estado 44
+    $@17       ir al estado 45
+    termino    ir al estado 60
+    factor     ir al estado 61
+
+
+estado 127
+
+   11 bloque: bloque . sentencia
+   22 decision: IF PARENTESIS_A condicion PARENTESIS_C THEN bloque $@8 ELSE bloque . ENDIF
+
+    WHILE    desplazar e ir al estado 18
+    FOR      desplazar e ir al estado 19
+    IF       desplazar e ir al estado 20
+    ENDIF    desplazar e ir al estado 130
+    ID       desplazar e ir al estado 21
+    GET      desplazar e ir al estado 22
+    DISPLAY  desplazar e ir al estado 23
+
+    sentencia   ir al estado 49
+    while       ir al estado 26
+    decision    ir al estado 27
+    for         ir al estado 28
+    asignacion  ir al estado 29
+    lectura     ir al estado 30
+    escritura   ir al estado 31
+
+
+estado 128
+
+   47 longitud: $@17 LONGITUD PARENTESIS_A CORCHETE_A listaID CORCHETE_C PARENTESIS_C $@18 . $@19
+
+    $default  reduce usando la regla 46 ($@19)
+
+    $@19  ir al estado 131
+
+
+estado 129
+
+   23 for: FOR inicioFor TO finFor CORCHETE_A STEP constanteEntera CORCHETE_C NEXT expresion .
+   43 expresion: expresion . $@15 op_sumres $@16 termino
+
+    OP_SUMA   reduce usando la regla 41 ($@15)
+    OP_RESTA  reduce usando la regla 41 ($@15)
+    $default  reduce usando la regla 23 (for)
+
+    $@15  ir al estado 75
+
+
+estado 130
+
+   22 decision: IF PARENTESIS_A condicion PARENTESIS_C THEN bloque $@8 ELSE bloque ENDIF .
+
+    $default  reduce usando la regla 22 (decision)
+
+
+estado 131
+
+   47 longitud: $@17 LONGITUD PARENTESIS_A CORCHETE_A listaID CORCHETE_C PARENTESIS_C $@18 $@19 .
+
+    $default  reduce usando la regla 47 (longitud)

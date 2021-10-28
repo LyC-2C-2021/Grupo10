@@ -1,0 +1,46 @@
+NOMBRE                             |TIPO      |VALOR                              |VALOR DECIMAL                      |LONGITUD
+a                                  |integer   |-                                  |-                                  |0
+m                                  |real      |-                                  |-                                  |0
+z                                  |integer   |-                                  |-                                  |0
+c                                  |string    |-                                  |-                                  |0
+d                                  |integer   |-                                  |-                                  |0
+e                                  |integer   |-                                  |-                                  |0
+f                                  |integer   |-                                  |-                                  |0
+g                                  |integer   |-                                  |-                                  |0
+h                                  |integer   |-                                  |-                                  |0
+i                                  |integer   |-                                  |-                                  |0
+numero                             |integer   |-                                  |-                                  |0
+cadena                             |string    |-                                  |-                                  |0
+resultado                          |integer   |-                                  |-                                  |0
+b                                  |string    |-                                  |-                                  |0
+r                                  |integer   |-                                  |-                                  |0
+_99999.990000                      |CONST_REAL|99999.990000                       |99999.990000                       |
+_99999.000000                      |CONST_REAL|99999.000000                       |99999.000000                       |
+_0.999990                          |CONST_REAL|0.999990                           |0.999990                           |
+_9999                              |CONST_INT |9999                               |9999                               |
+_"@sdADaSjfla%dfg"                 |CONST_STR |"@sdADaSjfla%dfg"                  |                                   |15
+_"asdlk fh sjf"                    |CONST_STR |"asdlk fh sjf"                     |                                   |12
+_30                                |CONST_INT |30                                 |30                                 |
+_"correcto"                        |CONST_STR |"correcto"                         |                                   |8
+_7                                 |CONST_INT |7                                  |7                                  |
+_4                                 |CONST_INT |4                                  |4                                  |
+_9                                 |CONST_INT |9                                  |9                                  |
+_8                                 |CONST_INT |8                                  |8                                  |
+_89                                |CONST_INT |89                                 |89                                 |
+_0                                 |CONST_INT |0                                  |0                                  |
+_3                                 |CONST_INT |3                                  |3                                  |
+_5                                 |CONST_INT |5                                  |5                                  |
+_12                                |CONST_INT |12                                 |12                                 |
+_10                                |CONST_INT |10                                 |10                                 |
+_1                                 |CONST_INT |1                                  |1                                  |
+_2.360000                          |CONST_REAL|2.360000                           |2.360000                           |
+_6                                 |CONST_INT |6                                  |6                                  |
+_18                                |CONST_INT |18                                 |18                                 |
+_19                                |CONST_INT |19                                 |19                                 |
+_20                                |CONST_INT |20                                 |20                                 |
+_21                                |CONST_INT |21                                 |21                                 |
+_22                                |CONST_INT |22                                 |22                                 |
+_23                                |CONST_INT |23                                 |23                                 |
+_24                                |CONST_INT |24                                 |24                                 |
+_25                                |CONST_INT |25                                 |25                                 |
+_102                               |CONST_INT |102                                |102                                |
