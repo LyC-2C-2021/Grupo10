@@ -1,0 +1,17 @@
+﻿Preparación del editor de assembler, en nuestro caso utilizamos FASM
+
+0) Copiar  el programa Fasm en la unidad C:\. que se encuentra dentro de la carpeta de entrega
+1) Renombrar el archivo 'GeneraExe.renombrar_extension' a 'GeneraExe.bat'. 
+2) En 'prueba.txt' escribir el programa que se desea ejecutar.
+3) Ejecutar 'GeneraExe.bat'.
+4) Ejecutar 'C:\Fasm\FASMW.EXE'
+3) Copiar en el editor FASM el código assembler generado en el archivo 'final.txt' del paso (3)
+5) Guardar el archivo con extensión '.asm' en C:\Fasm\
+4) Luego ir en el menú 'Run', hacer Run->Compilar y luego Run->Run.
+
+====================================================================
+1) Descargar el programa Fasm en la unidad C:\.
+Sitio de descarga: http://flatassembler.net/download.php
+También adjunto
+Pasos para ejecutar el assembler del tp:
+=========================================

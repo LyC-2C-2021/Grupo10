@@ -1,0 +1,77 @@
+﻿START
+
+*/DECLARACI0NES/*
+	
+DECLARE
+	DIM [a,m,z] AS [integer,real,integer]
+	DIM [c,d] AS [string,integer]
+	DIM [e,f] AS [integer,integer]
+	DIM [g,h,i] AS [integer,integer,integer]
+	DIM [numero, cadena, resultado, b] AS [integer, string, integer, string]
+	DIM [r] AS [integer]
+ENDDECLARE
+
+PROGRAM
+
+	a=9999
+	GET a
+    DISPLAY a
+    b="@sdADaSjfla%dfg"
+	b="asdlk fh sjf"
+        
+        */ @IF /*
+        */ Realizo una selección /*
+	IF( a <= 30 )
+	THEN
+		b="correcto" */ asignacion string /*
+	ENDIF
+
+        */IF ANIDADO/*
+
+	IF (m>=7 AND a==4)
+        THEN 
+		a=9
+	ELSE
+		IF (m == 8)
+                 THEN
+			a=89
+		ELSE
+			a=0
+                ENDIF 
+	ENDIF 
+	  a=3+4
+	a=5-7
+	a=3*3
+	a=12/4
+
+
+	*/ comentario multilinea */ segundo nivel /* re copado /*   
+	   	a=10
+			
+	*/  COMENTARIO   /*
+
+	
+	*/ ENTRADAS - SALIDAS /*
+		
+	GET a
+	
+	DISPLAY a
+		
+		*/WHILE/*	
+
+	WHILE (a == 18)
+	BEGINWHILE
+		a = a+1
+		DISPLAY a
+	ENDWHILE
+
+	*/FOR/*	
+        FOR z = (2+1) TO (9+4) [STEP 3] NEXT z
+	FOR z = (2+1) TO (9+4) [STEP] NEXT z
+
+	*/  LONGITUD /*
+	
+	 r=LONGITUD([a,d,e,f]) 	
+        r=LONGITUD([a,d,e,f,e,a,d,e,f]) 
+	 
+ENDPROGRAM		
